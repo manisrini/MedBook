@@ -6,8 +6,12 @@
 //
 
 import SwiftUI
+import DesignSystem
 
 struct BookDetailCellView: View {
+    
+    let book : MedBook
+    
     var body: some View {
         
         HStack{
@@ -16,50 +20,74 @@ struct BookDetailCellView: View {
                 .frame(height: 70)
                 .overlay {
                     HStack{
-                        Image(systemName: "alarm")
-                            .resizable()
-                            .frame(width: 60,height: 60)
-                            .background(Color.gray)
-                            .clipShape(RoundedRectangle(cornerRadius: 5))
+                        
+                        if let imageUrl = book.imageUrl{
+                            CustomImageView(url: imageUrl)
+                                .frame(width: 60,height: 60)
+                                .background(Color.gray)
+                                .clipShape(RoundedRectangle(cornerRadius: 5))
+                                .padding(.horizontal,5)
+                        }
                         
                         VStack(alignment:.leading){
-                            Text("Game of Thrones")
+                            Text(book.title)
                             
                             HStack{
-                                Text("Manikandan")
+                                Text(book.author_name)
                                 
                                 HStack(spacing:1){
                                     Image(systemName: "star")
-                                    Text("4.5")
+                                    Text("\(book.ratings_average)")
                                 }
                                 
                                 HStack(spacing:1){
                                     Image(systemName: "star")
-                                    Text("45")
+                                    Text("\(book.ratings_count)")
                                 }
                             }
                         }
                     }
                 }
             
-            Button {
-                print("pressed")
-            } label: {
-                RoundedRectangle(cornerRadius: 5)
-                    .fill(Color.green)
-                    .frame(width:40, height: 40)
-                    .overlay{
-                        Image(systemName: "heart")
-                    }
-                    .padding(.trailing,10)
+            
+            if book.isBookMarked{
+                Button {
+                    print("pressed")
+                } label: {
+                    RoundedRectangle(cornerRadius: 5)
+                        .fill(Color.green)
+                        .frame(width:40, height: 40)
+                        .overlay{
+                            Image(systemName: "heart")
+                        }
+                        .padding(.trailing,10)
+                }
             }
-
         }
         
     }
+    
+   
 }
 
 
+extension Double{
+    public func formatDecimal(_ number: Double) -> String {
+        let formatter = NumberFormatter()
+        formatter.minimumFractionDigits = 0
+        formatter.maximumFractionDigits = 1
+        return formatter.string(from: NSNumber(value: number)) ?? "\(number)"
+    }
+}
+
 #Preview {
-    BookDetailCellView()
+    BookDetailCellView(
+        book: .init(
+            title: "Hacking With Swift",
+            ratings_average: 5.3,
+            ratings_count: 4,
+            author_name: "mani",
+            imageUrl: nil
+        )
+    )
 }

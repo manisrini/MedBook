@@ -53,6 +53,8 @@ class HomeScreenVC: UIViewController {
 //        }
     }
 
+
+
 }
 
 extension HomeScreenVC : UITableViewDelegate,UITableViewDataSource{
@@ -60,7 +62,7 @@ extension HomeScreenVC : UITableViewDelegate,UITableViewDataSource{
         if let bookCell = tableView.dequeueReusableCell(withIdentifier: BookDetailCell.nibName, for: indexPath) as? BookDetailCell{
             
             bookCell.contentConfiguration = UIHostingConfiguration{
-                BookDetailCellView()
+                BookDetailCellView(book: self.viewModel.medBooks[indexPath.row])
             }
             return bookCell
         }

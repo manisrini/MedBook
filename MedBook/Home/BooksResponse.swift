@@ -14,4 +14,5 @@ struct Book : Codable{
     let ratings_average : Double
     let ratings_count : Int
     let author_name : [String]
+    let cover_i : Int
 }
