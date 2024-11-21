@@ -11,7 +11,7 @@ struct BooksResponse : Codable{
 
 struct Book : Codable{
     let title : String
-//    let ratings_average : Double
+    let ratings_average : Double
     let ratings_count : Int
-//    let author_name : String
+    let author_name : [String]
 }

@@ -10,6 +10,9 @@ import Foundation
 
 class HomeScreenViewModel{
     
+    
+    var medBooks : [Book] = []
+    
     func fetchBooks(completion : @escaping(BooksResponse?,String?) -> Void){
         Task{
             let url = "https://openlibrary.org/search.json?title=game&limit=10"
@@ -20,6 +23,7 @@ class HomeScreenViewModel{
             do{
                 let decoder = JSONDecoder()
                 let books = try decoder.decode(BooksResponse.self, from: _data)
+                self.medBooks = books.docs
                 completion(books,nil)
             }catch {
                 completion(nil,error.localizedDescription)

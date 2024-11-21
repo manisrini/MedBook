@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SwiftUI
 
 class HomeScreenVC: UIViewController {
 
@@ -58,6 +59,9 @@ extension HomeScreenVC : UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let bookCell = tableView.dequeueReusableCell(withIdentifier: BookDetailCell.nibName, for: indexPath) as? BookDetailCell{
             
+            bookCell.contentConfiguration = UIHostingConfiguration{
+                BookDetailCellView()
+            }
             return bookCell
         }
         
@@ -69,7 +73,7 @@ extension HomeScreenVC : UITableViewDelegate,UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        return self.viewModel.medBooks.count
     }
         
 }
@@ -77,8 +81,13 @@ extension HomeScreenVC : UITableViewDelegate,UITableViewDataSource{
 
 extension HomeScreenVC : UISearchBarDelegate{
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        viewModel.fetchBooks { response , error in
-            print(response)
+        
+        if searchText.count >= 3{
+            viewModel.fetchBooks { response , error in
+                DispatchQueue.main.async {
+                    self.booksTableView.reloadData()
+                }
+            }
         }
     }
 }
