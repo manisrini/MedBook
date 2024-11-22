@@ -1,7 +1,7 @@
 import XCTest
-@testable import DesignSystem
+@testable import Utilities
 
-final class DesignSystemTests: XCTestCase {
+final class UtilitiesTests: XCTestCase {
     func testExample() throws {
         // XCTest Documentation
         // https://developer.apple.com/documentation/xctest

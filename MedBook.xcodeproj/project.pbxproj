@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		2A4866E02CEE591A00B3EC5B /* NetworkManager in Frameworks */ = {isa = PBXBuildFile; productRef = 2A4866DF2CEE591A00B3EC5B /* NetworkManager */; };
 		2A6634BA2CEFA68800512AB5 /* DesignSystem in Frameworks */ = {isa = PBXBuildFile; productRef = 2A6634B92CEFA68800512AB5 /* DesignSystem */; };
+		2A8D6F492CF02E5F001A6537 /* Utilities in Frameworks */ = {isa = PBXBuildFile; productRef = 2A8D6F482CF02E5F001A6537 /* Utilities */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,7 +34,8 @@
 		2A48661E2CEE473A00B3EC5B /* MedBookTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MedBookTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A4866282CEE473A00B3EC5B /* MedBookUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MedBookUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A4866832CEE495C00B3EC5B /* NetworkManager */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = NetworkManager; sourceTree = "<group>"; };
-		2A66346A2CEF937B00512AB5 /* DesignSystem */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = DesignSystem; path = MedBook/DesignSystem; sourceTree = "<group>"; };
+		2A6634E12CEFB36900512AB5 /* DesignSystem */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = DesignSystem; path = /Users/facilio/.Trash/DesignSystem; sourceTree = "<absolute>"; };
+		2A8D6F472CF02DDC001A6537 /* Utilities */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Utilities; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -73,6 +75,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2A4866E02CEE591A00B3EC5B /* NetworkManager in Frameworks */,
+				2A8D6F492CF02E5F001A6537 /* Utilities in Frameworks */,
 				2A6634BA2CEFA68800512AB5 /* DesignSystem in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -97,7 +100,8 @@
 		2A4865FC2CEE473900B3EC5B = {
 			isa = PBXGroup;
 			children = (
-				2A66346A2CEF937B00512AB5 /* DesignSystem */,
+				2A8D6F472CF02DDC001A6537 /* Utilities */,
+				2A6634E12CEFB36900512AB5 /* DesignSystem */,
 				2A4866832CEE495C00B3EC5B /* NetworkManager */,
 				2A4866072CEE473900B3EC5B /* MedBook */,
 				2A4866212CEE473A00B3EC5B /* MedBookTests */,
@@ -146,6 +150,7 @@
 			packageProductDependencies = (
 				2A4866DF2CEE591A00B3EC5B /* NetworkManager */,
 				2A6634B92CEFA68800512AB5 /* DesignSystem */,
+				2A8D6F482CF02E5F001A6537 /* Utilities */,
 			);
 			productName = MedBook;
 			productReference = 2A4866052CEE473900B3EC5B /* MedBook.app */;
@@ -599,6 +604,10 @@
 		2A6634B92CEFA68800512AB5 /* DesignSystem */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = DesignSystem;
+		};
+		2A8D6F482CF02E5F001A6537 /* Utilities */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Utilities;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

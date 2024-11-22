@@ -7,13 +7,18 @@
 
 import UIKit
 import SwiftUI
+import DesignSystem
+import SnapKit
 
 class HomeScreenVC: UIViewController {
 
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var booksTableView: UITableView!
+    @IBOutlet weak var sortContainerView: UIView!
     
     var viewModel = HomeScreenViewModel()
+    var loader = MBActivityIndicator()
+    var dataManager = HomeScreenDataManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,6 +28,19 @@ class HomeScreenVC: UIViewController {
     private func initialSetup(){
         self.title = "Star Wars Blaster Tournament"
         self.setupSearchBar()
+        self.setUpTableView()
+        self.setUpSortingView()
+        
+        self.loader.center = self.booksTableView.center
+        self.booksTableView.addSubview(loader)
+        
+        
+        if let directoryLocation = FileManager.default.urls(for: .libraryDirectory, in: .userDomainMask).last {
+                    print("Core Data Path : Documents Directory: \(directoryLocation)Application Support")
+         }
+    }
+    
+    private func setUpTableView(){
         self.booksTableView.delegate = self
         self.booksTableView.dataSource = self
         self.booksTableView.register(UINib(nibName: BookDetailCell.nibName, bundle: nil), forCellReuseIdentifier: BookDetailCell.nibName)
@@ -44,17 +62,25 @@ class HomeScreenVC: UIViewController {
         }
     }
     
-    
-    private func fetchData(){
-//        viewModel.fetchPlayersData { [weak self] success in
-//            DispatchQueue.main.async {
-//                self?.pointsTableView.reloadData()
-//            }
-//        }
+    private func setUpSortingView(){
+        
+        let sortingHostingView = UIHostingController(rootView: SortingOptionsView(didTapBtn: { [weak self] selectedOption in
+            self?.viewModel.sortBooks(using: selectedOption.type)
+            self?.booksTableView.reloadData()
+            
+        }))
+        sortContainerView.addSubview(sortingHostingView.view)
+        
+        sortingHostingView.view.snp.makeConstraints { make in
+            make.left.equalTo(sortContainerView).inset(10)
+            make.right.equalTo(sortContainerView).offset(10)
+            make.top.equalTo(sortContainerView)
+            make.bottom.equalTo(sortContainerView)
+        }
+        
+        sortContainerView.isHidden = true //hidden in initial state since no characters are typed
     }
-
-
-
+      
 }
 
 extension HomeScreenVC : UITableViewDelegate,UITableViewDataSource{
@@ -69,27 +95,38 @@ extension HomeScreenVC : UITableViewDelegate,UITableViewDataSource{
         
         return UITableViewCell()
     }
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-    
+        
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.viewModel.medBooks.count
     }
-        
-}
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let item = UIContextualAction(style: .destructive, title: "Bookmark") {  (contextualAction, view, boolValue) in
 
+        }
+        item.image = UIImage(systemName: "heart.fill")
+        let swipeActions = UISwipeActionsConfiguration(actions: [item])
+        return swipeActions
+    }
+}
 
 extension HomeScreenVC : UISearchBarDelegate{
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
+        self.viewModel.searchText = searchText
         if searchText.count >= 3{
-            viewModel.fetchBooks { response , error in
-                DispatchQueue.main.async {
-                    self.booksTableView.reloadData()
+            loader.show()
+            viewModel.fetchBooks(dataManager: dataManager) {[weak self] response , error in
+                if let _self = self{
+                    DispatchQueue.main.async {
+                        _self.sortContainerView.isHidden = false
+                        _self.loader.hide()
+                        _self.booksTableView.reloadData()
+                    }
                 }
             }
+        }else{
+            self.sortContainerView.isHidden = true
         }
     }
 }
