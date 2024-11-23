@@ -12,6 +12,8 @@ class DBManager{
     let dbName = "MedBook"
     static let shared = DBManager()
     
+    private init(){}
+    
     public lazy var persistentContainer : NSPersistentContainer = {
         let container = NSPersistentContainer(name: dbName)
         container.loadPersistentStores { storeDesc, error in
@@ -31,7 +33,7 @@ class DBManager{
         }
     }
     
-    func retrieveData(entityName : String,predicate : NSPredicate?,completionHandler : @escaping(Result<[Any],Error>) -> Void){
+ /*   func retrieveData(entityName : String,predicate : NSPredicate?,completionHandler : @escaping(Result<[Any],Error>) -> Void){
         let managedContext = persistentContainer.viewContext
         let fetchReq = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
         
@@ -41,8 +43,7 @@ class DBManager{
         
         do {
             let result = try managedContext.fetch(fetchReq)
-            let obj = self.convertToJSONArray(moArray: result as? [NSManagedObject] ?? [])
-            if let arrObj = obj as? [Any]{
+            if let arrObj = res as? [Any]{
                 completionHandler(.success(arrObj))
             }else{
                 completionHandler(.success([]))
@@ -67,5 +68,5 @@ class DBManager{
         }
         return jsonArray
     }
-
+*/
 }
