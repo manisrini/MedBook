@@ -44,3 +44,4 @@ public class TableViewUtils{
         tableView.tableFooterView?.isHidden = true
     }
 }
+
