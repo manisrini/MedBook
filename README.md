@@ -1,5 +1,8 @@
 The app provides a user-friendly experience to bookmark your favourite books and also search top books using an intuitive search.
 
+## REQUIREMENTS:
+1) XCode 16
+
 ## SCREENSHOTS:
 
 *Landing Page*:
@@ -13,6 +16,10 @@ The app provides a user-friendly experience to bookmark your favourite books and
   <img src="SignUp.PNG" width="200" height="450" >
 </div>
 
+*VALID SIGNUP*:
+<div>
+  <img src="ValidSignup.PNG" width="200" height="450" >
+</div>
 
 *HOME SCREEN*:
 <div>
