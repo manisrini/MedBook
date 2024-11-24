@@ -1,6 +1,6 @@
 The app provides a user-friendly experience to bookmark your favourite books and also search top books using an intuitive search.
 
-Used modularisation techniques to develop this package. This is the file structure.
+Used modularisation techniques to develop this app. This is the file structure.
 <div>
   <img src="Modularised.png" >
 </div>
