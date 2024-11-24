@@ -8,7 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		2A4866E02CEE591A00B3EC5B /* NetworkManager in Frameworks */ = {isa = PBXBuildFile; productRef = 2A4866DF2CEE591A00B3EC5B /* NetworkManager */; };
+		2A806B972CF2E5300060E1C7 /* LoginInterface in Frameworks */ = {isa = PBXBuildFile; productRef = 2A806B962CF2E5300060E1C7 /* LoginInterface */; };
 		2A8D6F492CF02E5F001A6537 /* Utilities in Frameworks */ = {isa = PBXBuildFile; productRef = 2A8D6F482CF02E5F001A6537 /* Utilities */; };
+		2A987D612CF332BD003D0DE0 /* Home in Frameworks */ = {isa = PBXBuildFile; productRef = 2A987D602CF332BD003D0DE0 /* Home */; };
+		2A987D642CF33315003D0DE0 /* DependencyContainer in Frameworks */ = {isa = PBXBuildFile; productRef = 2A987D632CF33315003D0DE0 /* DependencyContainer */; };
 		2AA16D072CF25F1900211581 /* DesignSystem in Frameworks */ = {isa = PBXBuildFile; productRef = 2AA16D062CF25F1900211581 /* DesignSystem */; };
 		2AA16D092CF260F300211581 /* Login in Frameworks */ = {isa = PBXBuildFile; productRef = 2AA16D082CF260F300211581 /* Login */; };
 /* End PBXBuildFile section */
@@ -35,7 +38,16 @@
 		2A48661E2CEE473A00B3EC5B /* MedBookTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MedBookTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A4866282CEE473A00B3EC5B /* MedBookUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MedBookUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A4866832CEE495C00B3EC5B /* NetworkManager */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = NetworkManager; sourceTree = "<group>"; };
+		2A806B952CF2E4CA0060E1C7 /* LoginInterface */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = LoginInterface; sourceTree = "<group>"; };
 		2A8D6F472CF02DDC001A6537 /* Utilities */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Utilities; sourceTree = "<group>"; };
+		2A987D622CF33308003D0DE0 /* DependencyContainer */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = DependencyContainer; sourceTree = "<group>"; };
+		2A987D662CF339E1003D0DE0 /* DataBase */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = DataBase; sourceTree = "<group>"; };
+		2A987DB42CF38767003D0DE0 /* BookMarks+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BookMarks+CoreDataClass.swift"; sourceTree = "<group>"; };
+		2A987DB52CF38767003D0DE0 /* BookMarks+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BookMarks+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		2A987DB62CF38774003D0DE0 /* User+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+CoreDataClass.swift"; sourceTree = "<group>"; };
+		2A987DB72CF38774003D0DE0 /* User+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		2A987DB92CF38E3D003D0DE0 /* Countries+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Countries+CoreDataClass.swift"; sourceTree = "<group>"; };
+		2A987DBA2CF38E3D003D0DE0 /* Countries+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Countries+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		2AA16B952CF234E500211581 /* Login */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Login; sourceTree = "<group>"; };
 		2AA16C912CF2419500211581 /* DSM */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = DSM; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -69,6 +81,11 @@
 			path = MedBookUITests;
 			sourceTree = "<group>";
 		};
+		2A987D5B2CF328F0003D0DE0 /* Home */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Home;
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,8 +95,11 @@
 			files = (
 				2AA16D072CF25F1900211581 /* DesignSystem in Frameworks */,
 				2A4866E02CEE591A00B3EC5B /* NetworkManager in Frameworks */,
+				2A987D642CF33315003D0DE0 /* DependencyContainer in Frameworks */,
 				2AA16D092CF260F300211581 /* Login in Frameworks */,
 				2A8D6F492CF02E5F001A6537 /* Utilities in Frameworks */,
+				2A806B972CF2E5300060E1C7 /* LoginInterface in Frameworks */,
+				2A987D612CF332BD003D0DE0 /* Home in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -103,10 +123,19 @@
 		2A4865FC2CEE473900B3EC5B = {
 			isa = PBXGroup;
 			children = (
+				2A987DB92CF38E3D003D0DE0 /* Countries+CoreDataClass.swift */,
+				2A987DBA2CF38E3D003D0DE0 /* Countries+CoreDataProperties.swift */,
+				2A987DB62CF38774003D0DE0 /* User+CoreDataClass.swift */,
+				2A987DB72CF38774003D0DE0 /* User+CoreDataProperties.swift */,
+				2A987DB42CF38767003D0DE0 /* BookMarks+CoreDataClass.swift */,
+				2A987DB52CF38767003D0DE0 /* BookMarks+CoreDataProperties.swift */,
+				2A987D5B2CF328F0003D0DE0 /* Home */,
+				2A806B1F2CF2E0880060E1C7 /* LoginPackage */,
+				2A987D662CF339E1003D0DE0 /* DataBase */,
+				2A987D622CF33308003D0DE0 /* DependencyContainer */,
 				2AA16C912CF2419500211581 /* DSM */,
 				2A4866832CEE495C00B3EC5B /* NetworkManager */,
 				2A8D6F472CF02DDC001A6537 /* Utilities */,
-				2AA16B952CF234E500211581 /* Login */,
 				2A4866072CEE473900B3EC5B /* MedBook */,
 				2A4866212CEE473A00B3EC5B /* MedBookTests */,
 				2A48662B2CEE473A00B3EC5B /* MedBookUITests */,
@@ -130,6 +159,15 @@
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		2A806B1F2CF2E0880060E1C7 /* LoginPackage */ = {
+			isa = PBXGroup;
+			children = (
+				2AA16B952CF234E500211581 /* Login */,
+				2A806B952CF2E4CA0060E1C7 /* LoginInterface */,
+			);
+			path = LoginPackage;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -156,6 +194,9 @@
 				2A8D6F482CF02E5F001A6537 /* Utilities */,
 				2AA16D062CF25F1900211581 /* DesignSystem */,
 				2AA16D082CF260F300211581 /* Login */,
+				2A806B962CF2E5300060E1C7 /* LoginInterface */,
+				2A987D602CF332BD003D0DE0 /* Home */,
+				2A987D632CF33315003D0DE0 /* DependencyContainer */,
 			);
 			productName = MedBook;
 			productReference = 2A4866052CEE473900B3EC5B /* MedBook.app */;
@@ -320,9 +361,10 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = LFMXCJUU8Y;
+				DEVELOPMENT_TEAM = YR5TTS6ZU7;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MedBook/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -347,9 +389,10 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = LFMXCJUU8Y;
+				DEVELOPMENT_TEAM = YR5TTS6ZU7;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MedBook/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -604,9 +647,21 @@
 			isa = XCSwiftPackageProductDependency;
 			productName = NetworkManager;
 		};
+		2A806B962CF2E5300060E1C7 /* LoginInterface */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = LoginInterface;
+		};
 		2A8D6F482CF02E5F001A6537 /* Utilities */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Utilities;
+		};
+		2A987D602CF332BD003D0DE0 /* Home */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Home;
+		};
+		2A987D632CF33315003D0DE0 /* DependencyContainer */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = DependencyContainer;
 		};
 		2AA16D062CF25F1900211581 /* DesignSystem */ = {
 			isa = XCSwiftPackageProductDependency;

@@ -43,5 +43,59 @@ public class TableViewUtils{
         tableView.tableFooterView = spinner
         tableView.tableFooterView?.isHidden = true
     }
+    
+    public func setEmptyMessageText(_ message: String,textColor:UIColor,tableView : UITableView)
+    {
+        let messageLabel = UILabel(frame: CGRect(x: 0, y: 0, width: tableView.bounds.size.width, height: tableView.bounds.size.height))
+        messageLabel.text = message
+        messageLabel.textColor = textColor
+        messageLabel.numberOfLines = 0;
+        messageLabel.textAlignment = .center;
+        messageLabel.font = UIFont(name: "ProximaNova-Regular", size: 16.0)
+        messageLabel.sizeToFit()
+        
+        tableView.backgroundView = messageLabel;
+        tableView.separatorStyle = .none;
+    }
 }
+
+
+extension UIViewController {
+    public static func instantiate(bundle : Bundle) -> UIViewController? {
+        let fullName = NSStringFromClass(self)
+        let className = fullName.components(separatedBy: ".")[1]
+        let storyboard = UIStoryboard(name: className, bundle: bundle)
+        return storyboard.instantiateViewController(withIdentifier: className)
+    }
+}
+
+
+public class Utilities {
+    
+    
+    public static func hexStringToUIColor (hex:String) -> UIColor {
+        var cString:String = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
+        
+        if (cString.hasPrefix("#"))
+        {
+            cString.remove(at: cString.startIndex)
+        }
+        
+        if ((cString.count) != 6)
+        {
+            return UIColor.gray
+        }
+        
+        var rgbValue:UInt32 = 0
+        Scanner(string: cString).scanHexInt32(&rgbValue)
+        
+        return UIColor(
+            red: CGFloat((rgbValue & 0xFF0000) >> 16) / 255.0,
+            green: CGFloat((rgbValue & 0x00FF00) >> 8) / 255.0,
+            blue: CGFloat(rgbValue & 0x0000FF) / 255.0,
+            alpha: CGFloat(1.0)
+        )
+    }
+}
+
 

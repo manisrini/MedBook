@@ -6,7 +6,7 @@ import UIKit
 public enum DSMColorTokens : String{
     
     case Arattai_Tangelo = "E6560F"
-    case SecondaryGrey = "545454"
+    case AppTheme = "A9A9A9"
     case Blue = "226AB4"
     case Tertiary = "747474"
     case Quaternary = "989898"
