@@ -1,5 +1,11 @@
 The app provides a user-friendly experience to bookmark your favourite books and also search top books using an intuitive search.
 
+Used modularisation techniques to develop this package. This is the file structure.
+<div>
+  <img src="Modularised.PNG" width="500" height="600" >
+</div>
+
+
 ## REQUIREMENTS:
 1) XCode 16
 
