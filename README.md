@@ -6,6 +6,17 @@ Used modularisation techniques to develop this app. This is the file structure.
 </div>
 
 
+<br></br>
+
+**FUNCTIONALITIES:**
+* Login
+* Search books
+* Sort books based on different factors
+* Bookmark and Unbookmark a book
+* Pagination support
+* Data Persistence for bookmarks
+* Logout
+
 ## REQUIREMENTS:
 1) XCode 16
 
