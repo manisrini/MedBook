@@ -25,6 +25,7 @@ final class HomeScreenVC: UIViewController {
     var isInitialView : Bool = false
     
     let refreshControl = UIRefreshControl()
+    var workItem : DispatchWorkItem?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,7 +50,6 @@ final class HomeScreenVC: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(didRemoveBookMark), name: NSNotification.Name("BookMarkRemove"), object: nil)
     }
     
-    
     //Refresh the item that is removed from bookmarks list
     @objc func didRemoveBookMark(notification: NSNotification){
         if let bookMarkId = notification.object as? UUID{
@@ -62,6 +62,16 @@ final class HomeScreenVC: UIViewController {
                 }
             }
         }
+        
+        else if let bookMark = notification.object as? MedBook{
+            if let index = self.viewModel.medBooks.firstIndex(where: {$0.id == bookMark.id}) {
+                if index < self.viewModel.medBooks.count{
+                    self.viewModel.medBooks[index].isBookMarked = true
+                    self.booksTableView.reloadRows(at: [IndexPath(row: index, section: 0)], with: .automatic)
+                }
+            }
+        }
+        
     }
     
     deinit{
@@ -199,6 +209,7 @@ extension HomeScreenVC : UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let bookCell = tableView.dequeueReusableCell(withIdentifier: BookDetailCell.nibName, for: indexPath) as? BookDetailCell{
             
+            bookCell.selectionStyle = .none
             bookCell.contentConfiguration = UIHostingConfiguration{
                 BookDetailCellView(book: self.viewModel.medBooks[indexPath.row])
             }
@@ -212,6 +223,10 @@ extension HomeScreenVC : UITableViewDelegate,UITableViewDataSource{
         return self.viewModel.getCount()
     }
     
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        coordinator?.moveToDetailView(book: self.viewModel.medBooks[indexPath.row])
+    }
     
 //    Pagination functionality
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
@@ -250,23 +265,29 @@ extension HomeScreenVC : UISearchBarDelegate{
         self.viewModel.searchText = searchText
         if searchText.count >= 3{
             
-            MBLoader.show()
-            
-            viewModel.fetchBooks{[weak self] allBooks,error in
-                
-                MBLoader.hide()
+            self.workItem?.cancel()
 
-                if let _self = self{
+            self.workItem = DispatchWorkItem{ [self] in
+                self.viewModel.medBooks.removeAll()
+
+                viewModel.fetchBooks{[weak self] allBooks,error in
                     
-
+                    if let _self = self{
                     DispatchQueue.main.async {
 
-                        _self.sortContainerView.isHidden = false
-                        _self.booksTableView.reloadData()
+                            _self.sortContainerView.isHidden = false
+                            _self.booksTableView.reloadData()
+                        }
                     }
                 }
             }
+            
+            if let _workItem = workItem{
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: _workItem)
+            }
+
         }else{
+            self.viewModel.medBooks.removeAll()
             self.booksTableView.reloadData()
             self.sortContainerView.isHidden = true
         }

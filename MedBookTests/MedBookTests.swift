@@ -7,6 +7,8 @@
 
 import XCTest
 @testable import MedBook
+import NetworkManager
+import Home
 
 final class MedBookTests: XCTestCase {
 
@@ -18,7 +20,8 @@ final class MedBookTests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func testExample() throws {
+    @MainActor
+    func testExample() async throws {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
         // Any test you write for XCTest can be annotated as throws and async.
@@ -32,5 +35,40 @@ final class MedBookTests: XCTestCase {
             // Put the code you want to measure the time of here.
         }
     }
+    
+    func fetchBooks() async throws{
+        
+    }
 
 }
+
+//class MockNetworkManager : NetworkManagerProtocol{
+//    func getData(urlStr: String) async -> (Data?, String?) {
+//        let mockData = """
+//                {
+//                    "docs": [
+//                        {
+//                            "title": "Mock Book",
+//                            "ratings_average": 4.5,
+//                            "ratings_count": 100,
+//                            "author_name": ["Mock Author"],
+//                            "cover_i": 12345
+//                        }
+//                    ]
+//                }
+//                """.data(using: .utf8)
+//        return (mockData,nil)
+//    }
+//    
+//    
+//}
+//
+//let mockNM = MockNetworkManager()
+//let viewModel = HomeScreenViewModel(networkManager: mockNM)
+//viewModel.fetchBooks { books, error in
+//    print(viewModel.medBooks)
+//    XCTAssertEqual(books.count, 1, "Should fetch one book from the mock data.")
+//    XCTAssertEqual(viewModel.medBooks.count, 1, "Should fetch one book from the mock data.")
+//    XCTAssertEqual(viewModel.medBooks.first?.title ?? "", "Mock Book", "Should fetch one book from the mock data.")
+//    XCTAssertNil(error, "There should be no error.")
+//}

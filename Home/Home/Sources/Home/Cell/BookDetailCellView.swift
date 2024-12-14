@@ -18,7 +18,7 @@ struct BookDetailCellView: View {
         VStack(alignment : .leading){
             HStack{
                 RoundedRectangle(cornerRadius: 10)
-                    .fill(Color.gray)
+                    .fill(Color.white)
                     .frame(height: 70)
                     .overlay {
                         HStack{
@@ -64,12 +64,14 @@ struct BookDetailCellView: View {
                                             .foregroundStyle(Color.yellow)
                                         Text("\(book.ratings_average.formatDecimal())")
                                     }
+                                    .frame(width: 50)
                                     
                                     HStack(spacing:1){
                                         Image(systemName: "document.fill")
                                             .foregroundStyle(Color.yellow)
                                         Text("\(book.ratings_count)")
                                     }
+                                    .frame(width: 60)
                                 }
                             }
                             
@@ -91,6 +93,7 @@ struct BookDetailCellView: View {
             ratings_count: 4,
             author_name: "manikandan srinivasan test",
             imageUrl: nil,
+            cover_edition_key: "",
             isBookMarked: true
         )
     )

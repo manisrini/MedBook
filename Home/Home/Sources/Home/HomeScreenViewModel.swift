@@ -38,6 +38,8 @@ class HomeScreenViewModel{
     
     func fetchBooksFromServer(completion : @escaping([Book]) -> Void){
         Task {
+            
+            let url = HomeScreenEndPoints.fetchBookDetail(id: <#T##Int#>)
             let url = "https://openlibrary.org/search.json?title=\(self.searchText)&limit=\(self.searchLimit)&offset=\(self.medBooks.count)"
             print(url)
             let (data, _) = await NetworkManager.shared.getData(urlStr: url)
@@ -77,12 +79,14 @@ class HomeScreenViewModel{
             let cover_i = book.cover_i ?? 0
             let imageUrl = "https://covers.openlibrary.org/b/id/\(cover_i)-M.jpg"
             tempBooks.append(
+                
                 .init(
                     title: book.title,
                     ratings_average: book.ratings_average ?? 0,
                     ratings_count: book.ratings_count ?? 0,
                     author_name: book.author_name?.first ?? "",
-                    imageUrl: imageUrl
+                    imageUrl: imageUrl,
+                    cover_edition_key : book.cover_edition_key ?? ""
                 )
             )
         }
@@ -147,3 +151,25 @@ class HomeScreenViewModel{
 //    }
 
 }
+
+protocol HomeScreenUrls {
+    func fetchBookListUrl(params : [String:Any]) -> String
+    func fetchBookDetailUrl() -> String
+}
+
+
+protocol HomeScreenEndPointsProto{
+    static func fetchBookDetail(id : Int) -> String
+    static func fetchBookList() -> String
+}
+
+class HomeScreenEndPoints : HomeScreenEndPointsProto{
+    static func fetchBookDetail(id: Int) -> String {
+        return "api/fetchBook/\(id)"
+    }
+    
+    static func fetchBookList() -> String {
+        return "api/fetchBookList"
+    }
+}
+

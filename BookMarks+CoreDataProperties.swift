@@ -2,7 +2,7 @@
 //  BookMarks+CoreDataProperties.swift
 //  MedBook
 //
-//  Created by Manikandan on 24/11/24.
+//  Created by Manikandan on 12/12/24.
 //
 //
 
@@ -22,6 +22,7 @@ extension BookMarks {
     @NSManaged public var ratings_avg: Double
     @NSManaged public var ratings_count: Int64
     @NSManaged public var title: String?
+    @NSManaged public var cover_edition_key: String?
     @NSManaged public var user: User?
 
 }

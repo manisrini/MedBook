@@ -15,4 +15,5 @@ struct Book : Codable{
     let ratings_count : Int?
     let author_name : [String]?
     let cover_i : Int?
+    let cover_edition_key : String?
 }

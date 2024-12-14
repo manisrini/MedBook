@@ -15,12 +15,12 @@ class BookMarksListVC : UIViewController{
     @IBOutlet weak var booksMarksTableView: UITableView!
     
     var viewModel = BookMarksListViewModel()
+    var coordinator : HomeCoordinator?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "BookMarks"
         self.setUpTableView()
-        self.fetchBookMarks()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -32,6 +32,10 @@ class BookMarksListVC : UIViewController{
         self.booksMarksTableView.delegate = self
         self.booksMarksTableView.dataSource = self
         self.booksMarksTableView.register(UINib(nibName: BookDetailCell.nibName, bundle: .module), forCellReuseIdentifier: BookDetailCell.nibName)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.fetchBookMarks()
     }
         
     private func fetchBookMarks(){
@@ -58,6 +62,7 @@ extension BookMarksListVC : UITableViewDelegate,UITableViewDataSource{
                         ratings_count: Int(book.ratings_count),
                         author_name: book.author_name ?? "",
                         imageUrl: book.imageUrl,
+                        cover_edition_key: book.cover_edition_key ?? "",
                         isBookMarked: true
                     )
                 )
@@ -91,6 +96,23 @@ extension BookMarksListVC : UITableViewDelegate,UITableViewDataSource{
         return swipeActions
     }
     
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let book = self.viewModel.bookMarks[indexPath.row]
+        
+        coordinator?.moveToDetailView(
+            book: MedBook(
+                id : book.id ?? UUID(),
+                title: book.title ?? defaultStr,
+                ratings_average: book.ratings_avg,
+                ratings_count: Int(book.ratings_count),
+                author_name: book.author_name ?? defaultStr,
+                imageUrl: book.imageUrl,
+                cover_edition_key: book.cover_edition_key ?? defaultStr,
+                isBookMarked: true
+            )
+        )
+    }
     
     private func updateBookMarkStatus(indexPath : IndexPath){
         let bookMarkToDelete = self.viewModel.bookMarks[indexPath.row]

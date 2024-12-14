@@ -8,21 +8,24 @@
 import CoreData
 
 public struct MedBook{
-    public let id : UUID = UUID()
+    public let id : UUID
     public let title : String
     public let ratings_average : Double
     public let ratings_count : Int
     public let author_name : String
     public let imageUrl : String?
     public var isBookMarked : Bool
+    public var cover_edition_key : String
     
-    public init(title: String, ratings_average: Double, ratings_count: Int, author_name: String, imageUrl: String?, isBookMarked: Bool = false) {
+    public init(id: UUID = UUID(),title: String, ratings_average: Double, ratings_count: Int, author_name: String, imageUrl: String?, cover_edition_key : String, isBookMarked: Bool = false) {
+        self.id = id
         self.title = title
         self.ratings_average = ratings_average
         self.ratings_count = ratings_count
         self.author_name = author_name
         self.imageUrl = imageUrl
         self.isBookMarked = isBookMarked
+        self.cover_edition_key = cover_edition_key
     }
 }
 
@@ -54,6 +57,7 @@ final public class BookMarkDataHelper{
                     newBookmark.ratings_avg = bookmarkDetails.ratings_average
                     newBookmark.ratings_count = Int64(bookmarkDetails.ratings_count)
                     newBookmark.imageUrl = bookmarkDetails.imageUrl
+                    newBookmark.cover_edition_key = bookmarkDetails.cover_edition_key
                     
                     // Add the bookmark to the user
                     user.addToBookMarks(newBookmark)
